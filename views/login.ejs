@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            color: #444;
+            font-size: 2rem;
+        }
+
+        .login-container, .signup-container {
+            background-color: white;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease-in-out;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff4b47;
+        }
+
+        a {
+            color: #ff6f61;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #show-signup, #show-login {
+            background-color: transparent;
+            color: #ff6f61;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+        #show-signup:hover, #show-login:hover {
+            color: #ff4b47;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Login Section -->
+    <div class="login-container">
+        <center><h2>Login</h2></center>
+        <form id="login-form">
+            <input type="email" id="email" required placeholder="Email">
+            <input type="password" id="password" required placeholder="Password">
+            <center><button type="submit">Login</button></center>
+        </form>
+        <p class="error-message hidden" id="login-error">Invalid email or password. Try again!</p>
+        <p>Don't have an account? <a href="/signup">Sign up here</a></p> <!-- Link to signup page -->
+    </div>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                const redirectUrl = `/home?id=${result.userId}`;
+                window.location.href = redirectUrl;
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform - Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto; /* Allow auto height */
+            overflow: auto; /* Allow scrolling */
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ff6f61; /* Nav bar color */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; /* Aligns items */
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100; /* Ensure the navbar is above other content */
+        }
+
+        .nav-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center; /* Center the links */
+            align-items: center; /* Center align items vertically */
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px; /* Equal margin on both sides */
+            font-size: 1.2rem;
+            padding: 10px 20px; /* Add some padding for a larger clickable area */
+            transition: background-color 0.3s, transform 0.3s; /* Added transition for transform */
+        }
+        
+        .nav-links a:hover {
+            background-color: #ff4b47;
+            border-radius: 5px;
+            transform: scale(1.1); /* Slightly enlarge the text on hover */
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Increased width */
+            margin-top: 80px; /* To prevent content from hiding behind the navbar */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Image Slider Styles */
+        .image-slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Increased width */
+            overflow: hidden;
+            margin: 20px 0; /* Margin for separation */
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            transition: opacity 1s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 15px;
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1.5rem;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Media Player Styles */
+        .media-player-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Increased width */
+            margin: 40px 0; /* Margin for separation */
+        }
+
+        iframe {
+            width: 100%; /* Make video responsive */
+            height: 400px; /* Set a height for the iframe */
+            border-radius: 15px;
+            margin-top: 20px; /* Space between slider and video */
+        }
+
+        .media-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; /* Space above media controls */
+        }
+
+        .media-controls button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 1.2rem;
+            border: none;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .media-controls button:hover {
+            background-color: #ff4b47;
+        }
+
+        .video-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1.5rem;
+            z-index: 10;
+        }
+
+        .video-arrow.left {
+            left: -30px; /* Adjust position for video controls */
+        }
+
+        .video-arrow.right {
+            right: -30px; /* Adjust position for video controls */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-title">Online E-Learning</div>
+        <div class="nav-links">
+            <a href="/courses?id=<%= user._id %>">Courses</a>
+            <a href="/profile?id=<%= user._id %>">Profile</a> <!-- Pass userId in profile link -->
+            <a href="/">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome, <%= user.name %>!</h1> <!-- Dynamic username -->
+
+        <!-- Image Slider -->
+        <div class="image-slider">
+            <div class="slides">
+                <div class="slide"><img src="/images/HULK.jpg" alt="image"></div>
+                <div class="slide"><img src="/images/p1.jpeg" alt="image 1"></div>
+                <div class="slide"><img src="/images/p2.jpeg" alt="image 2"></div>
+                <div class="slide"><img src="./images/p3.jpeg" alt="image 3"></div>
+                <div class="slide"><img src="./images/p4.jpeg" alt="image 4"></div>
+                <div class="slide"><img src="./images/p5.jpeg" alt="image 5"></div>
+                <div class="slide"><img src="./images/p6.jpeg" alt="image 6"></div>
+                <div class="slide"><img src="./images/p7.jpeg" alt="image 7"></div>
+                <div class="slide"><img src="./images/p8.jpeg" alt="image 8"></div>
+            </div>
+            <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- Media Player Container -->
+        <div class="media-player-container">
+            <button class="video-arrow left" onclick="moveVideo(-1)">&#10094;</button>
+            <iframe id="mediaPlayer" src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+            <button class="video-arrow right" onclick="moveVideo(1)">&#10095;</button>
+        </div>
+    </div>
+
+</div>
+
+    <script>
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slide').length;
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+            slides.style.transform = `translateX(${-currentSlide * 100}%)`;
+        }
+        
+        function moveSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+
+        // YouTube Video Functions
+        let currentVideo = 0; // Index for videos
+        const videoIds = [
+            'ODJjHInHdh0', // Replace with your YouTube video IDs
+            'CunVJEh6Shs',
+            'HguQ4yu0GZ4'
+        ];
+
+        function changeVideo(index) {
+            const mediaPlayer = document.getElementById('mediaPlayer');
+            mediaPlayer.src = `https://www.youtube.com/embed/${videoIds[index]}?autoplay=1`;
+        }
+
+        function moveVideo(direction) {
+            currentVideo = (currentVideo + direction + videoIds.length) % videoIds.length; // Wrap around
+            changeVideo(currentVideo);
+        }
+
+        // Initial video load
+        changeVideo(currentVideo);
+
+
+
+    </script>
+</body>
+</html>
+

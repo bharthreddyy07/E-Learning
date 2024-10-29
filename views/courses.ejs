@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ff6f61;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .nav-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #ff4b47;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+
+        .courses-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin-top: 70px; /* Adjusted for navbar */
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-list li {
+            background-color: #ff6f61;
+            color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .course-list li:hover {
+            background-color: #ff4b47;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-title">Online E-Learning</div>
+        <div class="nav-links">
+            <a href="/courses?id=<%= userId %>">Courses</a>
+            <a href="/profile?id=<%= userId %>">Profile</a> <!-- Use userId instead of user._id -->
+            <a href="/">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="courses-container">
+        <h2>Available Courses</h2>
+        <ul class="course-list">
+            <% courses.forEach(course => { %>
+                <li><%= course.title %></li> <!-- Dynamically rendered course title -->
+            <% }) %>
+        </ul>
+        <a href="/home?id=<%= userId %>" class="home-link">Go to Home</a>
+    </div>
+
+</body>
+</html>

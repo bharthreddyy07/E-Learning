@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online E-Learning Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #E0F7FA; /* Light Cyan */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #00796B; /* Teal */
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        nav a {
+            color: white; /* Text color */
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2rem;
+            padding: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #004D40; /* Darker Teal for hover effect */
+        }
+        
+
+        .nav-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 90%;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s forwards;
+            margin-top: 100px; /* To prevent content from hiding behind the navbar */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 15px 35px;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .buttons a:hover {
+            background-color: #ff4b47;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-title">Online E-Learning</div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/login">Login</a> <!-- Updated link to route to login page -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to Our Online E-Learning Platform</h1>
+        <p>Our platform offers a wide range of courses to help you learn and grow. Whether you are a beginner looking to acquire new skills or an experienced professional seeking to expand your knowledge, we have courses tailored to your needs. Explore our diverse offerings and start learning today!</p>
+    </div>
+</body>
+</html>
